@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("1");
             r = false;
         } else input.setText(str+"1");
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("2");
             r = false;
         } else input.setText(str+"2");
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("3");
             r = false;
         } else input.setText(str+"3");
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("4");
             r = false;
         } else input.setText(str+"4");
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("5");
             r = false;
         } else input.setText(str+"5");
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("6");
             r = false;
         } else input.setText(str+"6");
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("7");
             r = false;
         } else input.setText(str+"7");
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("8");
             r = false;
         } else input.setText(str+"8");
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("9");
             r = false;
         } else input.setText(str+"9");
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
 
-        if(r == true){
+        if(r){
             input.setText("0");
             r = false;
         } else input.setText(str+"0");
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         input.setText(str+" + ");
         op = "+";
+        r = false;
     }
 
     public void sub(View view){
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         input.setText(str+" - ");
         op = "-";
+        r = false;
     }
 
     public void vezes(View view){
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         input.setText(str+" * ");
         op = "*";
+        r = false;
     }
 
     public void div(View view){
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
         input.setText(str+" / ");
         op = "/";
+        r = false;
     }
 
     public void ponto(View view){
@@ -199,11 +203,14 @@ public class MainActivity extends AppCompatActivity {
         } else if(op == "/"){
             Double v1 = Double.parseDouble(valores[0]);
             Double v2 = Double.parseDouble(valores[1]);
-            Double result = v1 / v2;
-
-            input.setText(result.toString());
+            if(v2 == 0) input.setText("Error 404");
+            else {
+                Double result = v1 / v2;
+                input.setText(result.toString());
+            }
             r = true;
         }
+        r = true;
     }
 
     public void erase(View view){
