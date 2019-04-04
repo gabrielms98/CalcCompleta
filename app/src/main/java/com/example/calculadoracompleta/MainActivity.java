@@ -2,6 +2,7 @@ package com.example.calculadoracompleta;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     public void add(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
-
+        if(!op.equals(" ")) return;
         input.setText(str+" + ");
         op = "+";
         r = false;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     public void sub(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
-
+        if(!op.equals(" ")) return;
         input.setText(str+" - ");
         op = "-";
         r = false;
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     public void vezes(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
-
+        if(!op.equals(" ")) return;
         input.setText(str+" * ");
         op = "*";
         r = false;
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     public void div(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
-
+        if(!op.equals(" ")) return;
         input.setText(str+" / ");
         op = "/";
         r = false;
@@ -176,30 +177,32 @@ public class MainActivity extends AppCompatActivity {
     public void igual(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
+        if(str.equals("")) return;
+        if(str.indexOf("+") == -1 && str.indexOf("-") == -1 && str.indexOf("/") == -1 && str.indexOf("*") == -1)
+            return;
 
         String[] valores = str.split("[-+*/]");
+        Log.i("valores", valores[0]);
 
+        if(valores[1].length() < 2) return;
         if(op == "+"){
             Double v1 = Double.parseDouble(valores[0]);
             Double v2 = Double.parseDouble(valores[1]);
             Double result = v1 + v2;
 
             input.setText(result.toString());
-            r = true;
         } else if(op == "-"){
             Double v1 = Double.parseDouble(valores[0]);
             Double v2 = Double.parseDouble(valores[1]);
             Double result = v1 - v2;
 
             input.setText(result.toString());
-            r = true;
         } else if(op == "*"){
             Double v1 = Double.parseDouble(valores[0]);
             Double v2 = Double.parseDouble(valores[1]);
             Double result = v1 * v2;
 
             input.setText(result.toString());
-            r = true;
         } else if(op == "/"){
             Double v1 = Double.parseDouble(valores[0]);
             Double v2 = Double.parseDouble(valores[1]);
@@ -208,15 +211,15 @@ public class MainActivity extends AppCompatActivity {
                 Double result = v1 / v2;
                 input.setText(result.toString());
             }
-            r = true;
         }
         r = true;
+        op = " ";
     }
 
     public void erase(View view){
         EditText input = findViewById(R.id.inputCalc);
         String str = input.getText().toString();
-
+        if(str.equals("")) return;
         str = str.substring(0, str.length() - 1);
         input.setText(str);
     }
